@@ -1,0 +1,5 @@
+n = 3
+m = 4
+p = 3
+
+n pode ser igual a p
