@@ -38,4 +38,18 @@ defmodule TerceiraLista do
   def join(lista1,lista2) do
     Enum.concat(lista1,lista2)
   end
+
+  #Exercício 8
+  def concat_lista([]), do: []
+  def concat_lista([head|tail]) do
+    head ++ concat_lista(tail)
+  end
+  #Usando Enum
+  """
+  def concat_lista(listas) do
+    Enum.reduce(listas, [], fn(lista, acc) -> acc ++ lista end)
+  end
+  """
+
+  #Exercício 9
 end
