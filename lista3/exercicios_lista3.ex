@@ -19,4 +19,15 @@ defmodule TerceiraLista do
   def produto([head|tail]) do
     head * produto(tail)
   end
+
+  #Exercício 4
+
+  #Exercício 5: Observar mais atentamente depois, pedir ajuda para entender
+  def insere_final(elemento, []), do: [elemento]
+  def insere_final(elemento, [head | tail]) do
+    [head | insere_final(elemento, tail)]
+  end
+
+  #Exercício 6
+
 end
