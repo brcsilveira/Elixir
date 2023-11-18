@@ -29,5 +29,9 @@ defmodule TerceiraLista do
   end
 
   #Exercício 6
+  def neg_lista(lista) do
+    Enum.map(lista, &(!&1))
+    #Enum.map é usado para percorrer todos os elementos da lista. &(!&1) é uma função anônima que nega (!) cada elemento da lista (&1).
+  end
 
 end
