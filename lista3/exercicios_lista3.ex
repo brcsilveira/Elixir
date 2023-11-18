@@ -50,6 +50,8 @@ defmodule TerceiraLista do
     Enum.reduce(listas, [], fn(lista, acc) -> acc ++ lista end)
   end
   """
-
   #Exercício 9
+  def inverte_lista(lista) do
+    Enum.reverse(lista)
+  end
 end
