@@ -34,4 +34,8 @@ defmodule TerceiraLista do
     #Enum.map é usado para percorrer todos os elementos da lista. &(!&1) é uma função anônima que nega (!) cada elemento da lista (&1).
   end
 
+  #Exercício 7
+  def join(lista1,lista2) do
+    Enum.concat(lista1,lista2)
+  end
 end
