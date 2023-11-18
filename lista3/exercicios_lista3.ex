@@ -21,6 +21,14 @@ defmodule TerceiraLista do
   end
 
   #Exercício 4
+  def and_lista([]), do: true
+  def and_lista([head | tail]), do: head and and_lista(tail)
+  #Usando Enum:
+  """
+  def and_lista(lista) do
+    Enum.reduce(lista, true, fn elemento, acc -> acc and elemento end)
+  end
+  """
 
   #Exercício 5: Observar mais atentamente depois, pedir ajuda para entender
   def insere_final(elemento, []), do: [elemento]
@@ -44,7 +52,7 @@ defmodule TerceiraLista do
   def concat_lista([head|tail]) do
     head ++ concat_lista(tail)
   end
-  #Usando Enum
+  #Usando Enum:
   """
   def concat_lista(listas) do
     Enum.reduce(listas, [], fn(lista, acc) -> acc ++ lista end)
