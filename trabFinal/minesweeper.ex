@@ -7,14 +7,13 @@ defmodule Minesweeper do
   # get_arr/2 (get array):  recebe uma lista (vetor) e uma posicao (p) e devolve o elemento
   # na posição p do vetor. O vetor começa na posição 0 (zero). Não é necessário tratar erros.
 
-  # def get_arr([h|_t], 0), do: ...
-  # def get_arr([_h|t], n), do: ...
+  def get_arr([h|_t], 0), do: h
+  def get_arr([_h|t], n), do: get_arr(t, n -1)
 
-  # update_arr/3 (update array): recebe uma lista(vetor), uma posição (p) e um novo valor (v)e devolve um
-  # novo vetor com o valor v na posição p. O vetor começa na posição 0 (zero)
+  # update_arr/3 (update array): recebe uma lista(vetor), uma posição (p) e um novo valor (v)e devolve um novo vetor com o valor v na posição p. O vetor começa na posição 0 (zero)
 
-  #def update_arr([_h|t],0,v), do: ...
-  #def update_arr([h|t],n,v), do: ...
+  def update_arr([_h|t],0,v), do: [v|t]
+  def update_arr([h|t],n,v), do: update_arr(t, n - 1, v)
 
   # O tabuleiro do jogo é representado como uma matriz. Uma matriz, nada mais é do que um vetor de vetores.
   # Dessa forma, usando as operações anteriores, podemos criar funções para acessar os tabuleiros, como
@@ -23,12 +22,12 @@ defmodule Minesweeper do
   # get_pos/3 (get position): recebe um tabuleiro (matriz), uma linha (l) e uma coluna (c) (não precisa validar).
   # Devolve o elemento na posicao tabuleiro[l,c]. Usar get_arr/2 na implementação
 
-  #def get_pos(tab,l,c), do: ...
+  def get_pos(tab,l,c), do: get_arr(get_arr(tab, l), c)
 
   # update_pos/4 (update position): recebe um tabuleiro, uma linha, uma coluna e um novo valor. Devolve
   # o tabuleiro modificado com o novo valor na posiçao linha x coluna. Usar update_arr/3 e get_arr/2 na implementação
 
-  #def update_pos(tab,l,c,v), do: ...
+  def update_pos(tab,l,c,v), do: update_arr(tab, l, update_arr(get_arr(tab, l), c, v))
 
   # SEGUNDA PARTE: LÓGICA DO JOGO
 
