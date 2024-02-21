@@ -8,12 +8,12 @@ defmodule Minesweeper do
   # na posição p do vetor. O vetor começa na posição 0 (zero). Não é necessário tratar erros.
 
   def get_arr([h|_t], 0), do: h
-  def get_arr([_h|t], n), do: get_arr(t, n -1)
+  def get_arr([_h|t], n), do: get_arr(t, (n-1))
 
   # update_arr/3 (update array): recebe uma lista(vetor), uma posição (p) e um novo valor (v)e devolve um novo vetor com o valor v na posição p. O vetor começa na posição 0 (zero)
 
   def update_arr([_h|t],0,v), do: [v|t]
-  def update_arr([h|t],n,v), do: update_arr(t, n - 1, v)
+  def update_arr([h|t],n,v) when n > 0, do: [h|update_arr(t, (n-1), v)]
 
   # O tabuleiro do jogo é representado como uma matriz. Uma matriz, nada mais é do que um vetor de vetores.
   # Dessa forma, usando as operações anteriores, podemos criar funções para acessar os tabuleiros, como
