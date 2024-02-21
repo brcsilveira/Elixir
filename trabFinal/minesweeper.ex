@@ -216,3 +216,4 @@ defmodule Motor do
 end
 
 #Motor.main()
+IEx.configure(inspect: [charlists: :as_lists]) # Tive de adicionar esse comando para que o IEx imprima as strings como listas de caracteres
