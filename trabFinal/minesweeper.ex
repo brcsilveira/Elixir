@@ -36,19 +36,10 @@ defmodule Minesweeper do
   #
   # Exemplo de tabuleiro de minas:
   #
-  # _mines_board = [[false, false, false, false, false, false, false, false, false],
-  #                 [false, false, false, false, false, false, false, false, false],
-  #                 [false, false, false, false, false, false, false, false, false],
-  #                 [false, false, false, false, false, false, false, false, false],
-  #                 [false, false, false, false, true , false, false, false, false],
-  #                 [false, false, false, false, false, true, false, false, false],
-  #                 [false, false, false, false, false, false, false, false, false],
-  #                 [false, false, false, false, false, false, false, false, false],
-  #                 [false, false, false, false, false, false, false, false, false]]
-  #
+  # _mines_board = [[false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false],[false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, true , false, false, false, false], [false, false, false, false, false, true, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false]]
   # esse tabuleiro possuí minas nas posições 4x4 e 5x5
 
-  #def is_mine(tab,l,c), do: ...
+  def is_mine(tab,l,c), do: get_pos(tab,l,c)
 
   # is_valid_pos/3 recebe o tamanho do tabuleiro (ex, em um tabuleiro 9x9, o tamanho é 9),
   # uma linha e uma coluna, e diz se essa posição é válida no tabuleiro. Por exemplo, em um tabuleiro
