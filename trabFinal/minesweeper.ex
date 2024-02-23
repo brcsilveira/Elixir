@@ -46,7 +46,8 @@ defmodule Minesweeper do
   # de tamanho 9, as posições 1x3,0x8 e 8x8 são exemplos de posições válidas. Exemplos de posições
   # inválidas seriam 9x0, 10x10 e -1x8
 
-  #def is_valid_pos(tamanho,l,c), do: ...
+  # false = posição inválida; true = posição válida
+  def is_valid_pos(tamanho,l,c), do: l >= 0 and l < tamanho and c >= 0 and c < tamanho
 
   # valid_moves/3: Dado o tamanho do tabuleiro e uma posição atual (linha e coluna), retorna uma lista
   # com todas as posições adjacentes à posição atual
@@ -207,4 +208,4 @@ defmodule Motor do
 end
 
 #Motor.main()
-#IEx.configure(inspect: [charlists: :as_lists]) # Tive de adicionar esse comando para que o IEx imprima as strings como listas de caracteres
+IEx.configure(inspect: [charlists: :as_lists]) # Tive de adicionar esse comando para que o IEx imprima as strings como listas de caracteres
