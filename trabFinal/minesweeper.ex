@@ -65,7 +65,7 @@ defmodule Minesweeper do
   #   ...    ...  ..
   # Uma maneira de resolver seria gerar todas as 8 posições adjacentes e depois filtrar as válidas usando is_valid_pos
 
-  #def valid_moves(tam,l,c), do: ...
+  def valid_moves(tam,l,c), do: [{l-1,c-1},{l-1,c},{l-1,c+1},{l,c-1},{l,c+1},{l+1,c-1},{l+1,c},{l+1,c+1}] |> Enum.filter(fn {l,c} -> is_valid_pos(tam,l,c) end)
 
   # conta_minas_adj/3: recebe um tabuleiro com o mapeamento das minas e uma  uma posicao  (linha e coluna), e conta quantas minas
   # existem nas posições adjacentes
