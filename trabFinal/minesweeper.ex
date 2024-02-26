@@ -100,9 +100,18 @@ defmodule Minesweeper do
   # - Se a posição a ser aberta não possui minas adjacentes, abrimos ela com zero (0) e recursivamente abrimos
   # as outras posições adjacentes a ela
 
-  #def abre_jogada(l,c,minas,tab) do
-  #   (...)
-  #end
+  def abre_jogada(l,c,minas,tab) do
+    if is_mine(minas,l,c) or get_pos(tab,l,c) != "-" do
+      tab
+    else
+      minas_adj = conta_minas_adj(minas,l,c)
+      if minas_adj > 0 do
+        update_pos(tab,l,c,minas_adj)
+      else
+        abre_jogada_rec(l,c,minas,tab)
+      end
+    end
+  end
 
 # abre_posicao/4, que recebe um tabueiro de jogos, o mapa de minas, uma linha e uma coluna
 # Essa função verifica:
