@@ -65,14 +65,27 @@ defmodule Minesweeper do
   #   ...    ...  ..
   # Uma maneira de resolver seria gerar todas as 8 posições adjacentes e depois filtrar as válidas usando is_valid_pos
 
-  def valid_moves(tam,l,c), do: [{l-1,c-1},{l-1,c},{l-1,c+1},{l,c-1},{l,c+1},{l+1,c-1},{l+1,c},{l+1,c+1}] |> Enum.filter(fn {l,c} -> is_valid_pos(tam,l,c) end)
+  def valid_moves(tam, l, c) do
+    [{l-1, c-1}, {l-1, c},{l-1, c+1},{l, c-1},{l, c+1},{l+1, c-1},{l+1, c},{l+1, c+1}]
+    |> Enum.filter(fn {l, c} -> is_valid_pos(tam, l, c) end)
+  end
 
   # conta_minas_adj/3: recebe um tabuleiro com o mapeamento das minas e uma  uma posicao  (linha e coluna), e conta quantas minas
   # existem nas posições adjacentes
 
-  # def conta_minas_adj(tab,l,c) do
-  #   (...)
-  # end
+  # Exemplo para testar "conta_minas_adj":
+  # [[false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false],[false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, true , false, false, false, false], [false, false, false, false, false, true, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false]]
+
+  def conta_minas_adj(tab, l, c) do
+    valid_moves(length(tab), l, c)
+    |> Enum.reduce(0, fn {l, c}, acc ->
+      if is_mine(tab, l, c) do
+        acc + 1
+      else
+        acc
+      end
+    end)
+  end
 
   # abre_jogada/4: é a função principal do jogo!!
   # recebe uma posição a ser aberta (linha e coluna), o mapa de minas e o tabuleiro do jogo. Devolve como
