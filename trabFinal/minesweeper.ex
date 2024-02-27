@@ -100,16 +100,16 @@ defmodule Minesweeper do
   # - Se a posição a ser aberta não possui minas adjacentes, abrimos ela com zero (0) e recursivamente abrimos
   # as outras posições adjacentes a ela
 
-  def abre_jogada(l,c,minas,tab) do
-    if is_mine(minas,l,c) or get_pos(tab,l,c) != "-" do
-      tab
-    else
-      minas_adj = conta_minas_adj(minas,l,c)
-      if minas_adj > 0 do
-        update_pos(tab,l,c,minas_adj)
-      else
-        abre_jogada_rec(l,c,minas,tab)
-      end
+  # minas_board = [[false, false, false],[false, true,  false],[false, false, true]]
+  # game_board = [["-", "-", "-"],["-", "-", "-"],["-", "-", "-"]]
+
+  def abre_jogada(l, c, minas, tab) do
+    cond do
+      is_mine(minas, l, c) -> tab
+      get_pos(tab, l, c) != "-" -> tab
+      conta_minas_adj(minas, l, c) > 0 -> update_pos(tab, l, c, conta_minas_adj(minas, l, c))
+      true -> valid_moves(length(tab), l, c)
+      |> Enum.reduce(update_pos(tab, l, c, 0), fn {l, c}, acc -> abre_jogada(l, c, minas, acc) end)
     end
   end
 
