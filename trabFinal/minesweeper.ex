@@ -131,10 +131,16 @@ defmodule Minesweeper do
 # onde estão as minas e os números nas posições adjecentes às minas.Essa função é usada para mostrar
 # todo o tabuleiro no caso de vitória ou derrota. Para implementar esta função, usar a função abre_posicao/4
 
+  def abre_tabuleiro(_minas,tab,l,_c) when l < 0, do: tab
+  def abre_tabuleiro(minas,tab,l,c) when c < 0, do: abre_tabuleiro(minas,tab,l-1,length(minas)-1)
+  def abre_tabuleiro(minas,tab,l,c), do: abre_tabuleiro(minas, abre_posicao(tab,minas,l,c),l,c-1)
+  def abre_tabuleiro(minas,tab) do
+    qtd_linhas_e_colunas = length(tab) - 1 # -1 pois o index começa em 0 e considerando que o tabuleiro é quadrado
+    abre_tabuleiro(minas,tab,qtd_linhas_e_colunas,qtd_linhas_e_colunas)
+  end
 
-  #def abre_tabuleiro(minas,tab) do
-  #   (...)
-  #end
+# Exemplo: Minesweeper.abre_tabuleiro([[true,false,false,false],[true,false,false,false],[true,false,false,false],[true,false,false,false]],[["-","-","-","-"],["-","-","-","-"],["-","-","-","-"],["-","-","-","-"]])
+# Funciona: Minesweeper.abre_tabuleiro([[true,false,false],[true,false,false],[true,false,false]],[["-","-","-"],["-","-","-"],["-","-","-"]])
 
 # board_to_string/1: -- Recebe o tabuleiro do jogo e devolve uma string que é a representação visual desse tabuleiro.
 # Essa função é aplicada no tabuleiro antes de fazer o print dele na tela. Usar a sua imaginação para fazer um
