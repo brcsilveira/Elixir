@@ -191,7 +191,9 @@ defmodule Minesweeper do
 
 # -- gera_mapa_de_minas/1: recebe o tamanho do tabuleiro e gera um mapa de minas zero, onde todas as posições contém false
 
-  #def gera_mapa_de_minas(n), do: ...
+  def gera_mapa_de_minas(n) do
+    gera_lista(n, gera_lista(n, false))
+  end
 
 
 # conta_fechadas/1: recebe um tabueleiro de jogo e conta quantas posições fechadas existem no tabuleiro (posições com "-")
