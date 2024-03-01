@@ -147,12 +147,36 @@ defmodule Minesweeper do
 # tabuleiro legal. Olhar os exemplos no .pdf com a especificação do trabalho. Não esquecer de usar \n para quebra de linhas.
 # Você pode quebrar essa função em mais de uma: print_header, print_linhas, etc...
 
-  def board_to_string(tab) do
-    Enum.reduce(tab, "", fn linha, acc ->
-      Enum.reduce(linha, acc, fn elem, acc -> acc <> elem <> " " end) <> "\n"
-    end)  |> IO.puts  # IO.puts para imprimir o tabuleiro na tela e não retornar a string para o IEx
+  # Função para contar os indices do cabeçalho do tabuleiro e auxiliar a função print_cabecalho
+  def aux_print_cabecalho(contador_colunas) do
+    Range.new(0, contador_colunas-1)
+    |> Enum.map(fn x -> Integer.to_string(x) end)
+    |> Enum.join("   ")
+  end
+  def print_cabecalho(contador_colunas) do
+    IO.puts("   " <> aux_print_cabecalho(contador_colunas))
   end
 
+  # Função para contar os indices das linhas do tabuleiro e auxiliar a função print_linha, o get_arr é usado para pegar os valores das celulas
+  def aux_print_linha(linha, contador_colunas) do
+    Range.new(0, contador_colunas-1)
+    |> Enum.map(fn x -> get_arr(linha, x) end)
+    |> Enum.join("   ")
+  end
+  def print_linha(vetor_linha, linha, contador_colunas) do
+    IO.puts Integer.to_string(linha) <> "  " <> aux_print_linha(vetor_linha, contador_colunas)
+    IO.puts ""
+  end
+
+  def board_to_string(tab) do
+    qtd_colunas = length(tab)
+    print_cabecalho(qtd_colunas)
+    Enum.reduce(tab, 0, fn (linha, i) ->
+      print_linha(linha, i, qtd_colunas)
+      i+1
+    end)
+    IO.puts ""
+  end
 # gera_lista/2: recebe um inteiro n, um valor v, e gera uma lista contendo n vezes o valor v
 
   #def gera_lista(0,v), do: ...
