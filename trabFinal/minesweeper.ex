@@ -147,18 +147,10 @@ defmodule Minesweeper do
 # tabuleiro legal. Olhar os exemplos no .pdf com a especificação do trabalho. Não esquecer de usar \n para quebra de linhas.
 # Você pode quebrar essa função em mais de uma: print_header, print_linhas, etc...
 
-  def print_cabecalho(qtd_colunas) do
-
-  end
-
-
   def board_to_string(tab) do
-    qtd_linhas_e_colunas = length(tab) #considerando sempre uma matriz quadrada
-    print_cabecalho(qtd_linhas_e_colunas)
-
     Enum.reduce(tab, "", fn linha, acc ->
       Enum.reduce(linha, acc, fn elem, acc -> acc <> elem <> " " end) <> "\n"
-    end)  |> IO.puts
+    end)  |> IO.puts  # IO.puts para imprimir o tabuleiro na tela e não retornar a string para o IEx
   end
 
 # gera_lista/2: recebe um inteiro n, um valor v, e gera uma lista contendo n vezes o valor v
