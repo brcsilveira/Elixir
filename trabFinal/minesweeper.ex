@@ -204,9 +204,10 @@ defmodule Minesweeper do
 
 # -- conta_minas/1: Recebe o tabuleiro de Minas (MBoard) e conta quantas minas existem no jogo
 
-  #def conta_minas(minas) do
-  # (...)
-  #end
+  def conta_minas(minas) do
+    minas
+    |> Enum.reduce(0, fn linha, acc -> acc + Enum.count(linha, fn x -> x == true end) end)
+  end
 
 # end_game?/2: recebe o tabuleiro de minas, o tauleiro do jogo, e diz se o jogo acabou.
 # O jogo acabou quando o número de casas fechadas é igual ao numero de minas
