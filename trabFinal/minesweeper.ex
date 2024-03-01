@@ -195,12 +195,12 @@ defmodule Minesweeper do
     gera_lista(n, gera_lista(n, false))
   end
 
-
 # conta_fechadas/1: recebe um tabueleiro de jogo e conta quantas posições fechadas existem no tabuleiro (posições com "-")
 
-  #def conta_fechadas(tab) do
-  # (...)
-  #end
+  def conta_fechadas(tab) do
+    tab
+    |> Enum.reduce(0, fn linha, acc -> acc + Enum.count(linha, fn x -> x == "-" end) end)
+  end
 
 # -- conta_minas/1: Recebe o tabuleiro de Minas (MBoard) e conta quantas minas existem no jogo
 
