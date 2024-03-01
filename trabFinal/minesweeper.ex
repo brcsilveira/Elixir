@@ -179,13 +179,15 @@ defmodule Minesweeper do
   end
 # gera_lista/2: recebe um inteiro n, um valor v, e gera uma lista contendo n vezes o valor v
 
-  def gera_lista(0,v), do: []
+  def gera_lista(0,_v), do: []
   def gera_lista(n,v), do: [v|gera_lista(n-1,v)]
 
 # -- gera_tabuleiro/1: recebe o tamanho do tabuleiro de jogo e gera um tabuleiro  novo, todo fechado (todas as posições
 # contém "-"). Usar gera_lista
 
-  #def gera_tabuleiro(n), do: ...
+  def gera_tabuleiro(n) do
+    gera_lista(n, gera_lista(n, "-"))
+  end
 
 # -- gera_mapa_de_minas/1: recebe o tamanho do tabuleiro e gera um mapa de minas zero, onde todas as posições contém false
 
