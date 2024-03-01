@@ -211,7 +211,9 @@ defmodule Minesweeper do
 
 # end_game?/2: recebe o tabuleiro de minas, o tauleiro do jogo, e diz se o jogo acabou.
 # O jogo acabou quando o número de casas fechadas é igual ao numero de minas
-  #def end_game(minas,tab), do:  ...
+  def end_game(minas,tab) do
+    conta_fechadas(tab) == conta_minas(minas)
+  end
 
 #### fim do módulo
 end
