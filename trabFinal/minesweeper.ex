@@ -131,6 +131,9 @@ defmodule Minesweeper do
 # onde estão as minas e os números nas posições adjecentes às minas.Essa função é usada para mostrar
 # todo o tabuleiro no caso de vitória ou derrota. Para implementar esta função, usar a função abre_posicao/4
 
+# Exemplo: Minesweeper.abre_tabuleiro([[true,false,false,false],[true,false,false,false],[true,false,false,false],[true,false,false,false]],[["-","-","-","-"],["-","-","-","-"],["-","-","-","-"],["-","-","-","-"]])
+# Funciona: Minesweeper.abre_tabuleiro([[true,false,false],[true,false,false],[true,false,false]],[["-","-","-"],["-","-","-"],["-","-","-"]])
+
   def abre_tabuleiro(_minas,tab,l,_c) when l < 0, do: tab
   def abre_tabuleiro(minas,tab,l,c) when c < 0, do: abre_tabuleiro(minas,tab,l-1,length(minas)-1)
   def abre_tabuleiro(minas,tab,l,c), do: abre_tabuleiro(minas, abre_posicao(tab,minas,l,c),l,c-1)
@@ -139,17 +142,24 @@ defmodule Minesweeper do
     abre_tabuleiro(minas,tab,qtd_linhas_e_colunas,qtd_linhas_e_colunas)
   end
 
-# Exemplo: Minesweeper.abre_tabuleiro([[true,false,false,false],[true,false,false,false],[true,false,false,false],[true,false,false,false]],[["-","-","-","-"],["-","-","-","-"],["-","-","-","-"],["-","-","-","-"]])
-# Funciona: Minesweeper.abre_tabuleiro([[true,false,false],[true,false,false],[true,false,false]],[["-","-","-"],["-","-","-"],["-","-","-"]])
-
 # board_to_string/1: -- Recebe o tabuleiro do jogo e devolve uma string que é a representação visual desse tabuleiro.
 # Essa função é aplicada no tabuleiro antes de fazer o print dele na tela. Usar a sua imaginação para fazer um
 # tabuleiro legal. Olhar os exemplos no .pdf com a especificação do trabalho. Não esquecer de usar \n para quebra de linhas.
 # Você pode quebrar essa função em mais de uma: print_header, print_linhas, etc...
 
-  #def board_to_string(tab) do
-  # (...)
-  #end
+  def print_cabecalho(qtd_colunas) do
+
+  end
+
+
+  def board_to_string(tab) do
+    qtd_linhas_e_colunas = length(tab) #considerando sempre uma matriz quadrada
+    print_cabecalho(qtd_linhas_e_colunas)
+
+    Enum.reduce(tab, "", fn linha, acc ->
+      Enum.reduce(linha, acc, fn elem, acc -> acc <> elem <> " " end) <> "\n"
+    end)  |> IO.puts
+  end
 
 # gera_lista/2: recebe um inteiro n, um valor v, e gera uma lista contendo n vezes o valor v
 
